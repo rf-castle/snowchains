@@ -52,7 +52,7 @@ pub fn contest_id_from_url(url: &Url) -> anyhow::Result<String> {
         bail!("wrong domain. expected `atcoder.jp`: {}", url);
     }
 
-    static_regex!(r"\A/contests/([a-z0-9_\-]+)/.*\z$")
+    static_regex!(r"\A/contests/([a-zA-Z0-9_\-]+)/.*\z$")
         .captures(url.path())
         .map(|caps| caps[1].to_owned())
         .with_context(|| "Could not extract contest ID of the problem")
